@@ -25,7 +25,7 @@ const _counterReducer = createReducer(initialState, on(increment, state => {
 }),on(changeChannelName,(state)=>{
   return{
     ...state,
-    channelName: 'da trigger change channelName'
+    channelName: 'da trigger change channelName',
   }
 }))
 
