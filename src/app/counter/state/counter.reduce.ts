@@ -3,6 +3,7 @@ import {createReducer, on} from "@ngrx/store";
 import {changeChannelName, decrement, increment, incrementCustom, reset} from "./counter.actions";
 
 const _counterReducer = createReducer(initialState, on(increment, state => {
+  debugger
   return {
     ...state,
     counter: state.counter + 1

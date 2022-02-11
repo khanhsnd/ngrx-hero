@@ -3,7 +3,7 @@ import {Store} from "@ngrx/store";
 import {CounterState} from "../state/counter.state";
 import {changeChannelName, incrementCustom} from "../state/counter.actions";
 import {Observable} from "rxjs";
-import {tap} from "rxjs/operators";
+import {AppState} from "../../store/app.state";
 
 @Component({
   selector: 'app-counter-input',
@@ -12,17 +12,17 @@ import {tap} from "rxjs/operators";
 })
 export class CounterInputComponent implements OnInit {
   value: number;
-  channelName$ : Observable<CounterState>;
+  channelName$: Observable<CounterState>;
+
   constructor(
-    private _store: Store<{ counter: CounterState }>
+    private _store: Store<AppState>
   ) {
   }
 
   ngOnInit(): void {
-    this.channelName$ = this._store.select('counter').pipe(tap(rs=>{
-      console.log('trigger2')
-    }))
+    this.channelName$ = this._store.select('counter');
   }
+
   onAdd() {
     this._store.dispatch(incrementCustom({value: this.value}))
   }
